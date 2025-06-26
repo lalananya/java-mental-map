@@ -1,0 +1,30 @@
+JAVA OOPS
+
+🌟 Classes and Objects
+These two are the basic concepts of OOPS classes and objects, classes are the blur print for the objects and objects are real world entity implementation.
+
+class Car {
+    // class level variables
+    statiic String type; // static
+    // instance variables
+    String model;
+    String color;
+    int speed;
+    Car() { // default  constructor, BONUS - if you don't write explicitly, compiler will any which way insert it compile time
+
+    }
+    // parametrised constructor
+    Car(String type, String model, String color) {
+        this.type = type;
+        this.model = model;
+        this.color = color;
+    }
+    
+    // methods
+    int increaseSpeed(int increment) {
+        this.speed = this.speed + increment;
+        return this.speed;
+    }
+    
+    // ...
+}
