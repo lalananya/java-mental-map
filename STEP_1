@@ -1,0 +1,187 @@
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Basics 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+Syntax, I am assuming. It is all set for Java
+Class, objects, Array, inner classes, etc; — Just the Syntax,
+What and Why's will be discussed later.
+
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟  Primitive Data Types 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟  
+byte – 8 bits
+
+short – 16 bits
+
+int – 32 bits
+
+long – 64 bits
+
+float – 32 bits
+
+double – 64 bits
+
+char – 16 bits (0 - Math.pow(2,16) → [ \u0000 \uffff ]) → black to white
+
+boolean – 1 bit
+
+🔹 Why is memory size knowledge important?
+Because it might be used in optimization.
+Why use 32-bit memory (-Math.pow(2,31) → Math.pow(2,31) + 1)
+to store something which can easily be done using 16-bit (-Math.pow(2,15) → Math.pow(2,15) + 1)?
+
+Optimization is not always time or extra space.
+Although this kind of optimization requires valid use cases —
+Precision like in fintech, launching rockets etc; or just the money factor can’t afford space 😄
+
+🟡 The Primitive data types have size limits.
+If we try to store a value that is larger than the maximum value:
+int i = Integer.MAX_VALUE;
+int j = i + 1; // overflow → rolls over to minimum int
+
+double d = Double.MAX_VALUE;
+double o = d + 1; // results in infinity
+
+
+🌿 Overflow
+These are behaviours of primitive data types in overflow condition.
+
+🌿 Autoboxing
+These primitive data types have full Java class implementations (Character, Integer, String, etc.)
+Used in Generics — like List<String>, Set<Integer>, etc.
+This conversion of class to primitive types is handled by Java — called Autoboxing.
+
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Java main() method exlpain 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+main() starting point of Java program - You know this
+public static void main(String[] args) - You know this as well
+<access-modifier> - public, can't keep entry point private deafult or protected right ? global visibility
+<method can be accessed straight from class> - java ABC , main() is static, thus no issue in calling
+<no return value> - void
+<name of the method> - JVM looks for this name because this is the identifier
+
+you can have other methods named as main , local to a class, and class will be responsible to execute this
+Here By JVM instruction, psvm is the entry point, thus `main` name is important here
+
+>> java ABC foo bar
+
+🌿 foo bar are two arguments passed via main() method , this will be available in args argument in psvm, now args could be named anything
+Also, String... args, any type not just array
+via command line things get converted to array, but if calling the psvm() from any other class you need array, using `...` allows us
+call the psvm() using anything even empty.
+🌿 `p strictfp svm` used for compatibility between processors, when working with floaitng point variables
+🌿 synchronised and final can also be used here as part of signature, but stands no significance
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 if, if-else, switch, basic loops (for, foreach, while, do while), branching, {}, break, continue  -  YOU KNOW IT ALL 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Java Packages 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 
+
+package com.github.lalananya.java-mental-map
+
+Take this as an example
+com (folder) -> github (folder) -> lalananya (folder) -> java-mental-map (folder) -> current structure, 
+(easy - peesy, when working on real projects you need to structure your project as well, thus required)
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Pass By Value /  Pass By Reference 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 
+
+As you know Java is strictly pass by value, when you pass an entity, copy of that entity is created local to that function to operate on.
+When method is invoked, copy of the argument is created in the stack memory , this copied thing is then passed to the method
+
+public void abc() {
+int x = 10;
+int y = 20;
+xyz(x,y);
+}
+
+public void xyz(int x, int y) {
+  
+}
+
+values are directly stored in the stack memory when abc() in invoked, and when xyz() is invoked their copies are stored at a different location and operation happens on them
+using xyz() method, 
+
+When we are dealing with non prmitive type / referenced types, any object that is created are stored in heap but the references to these are stored in stack memory,
+when we pass these references, this copied reference is YES, again stored in stack memory, but they point to the same object, cause obviously.
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Java 5 Varargs = (String... args) 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 
+
+You already know this !!!!!!!, If not go figure
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 hashcode() in Java 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+In Java, efficient hashing alogorithm stand behind some powerful collections in Java, like HashMap, HashSet
+When you using HashTables , or the above mentioned two, and when you try to save a key , using hashcode(), a hashed code of the input is created, and this code is then 
+stored so that the CRUD operations, the accessibility becomes more faster than usual.
+
+You can store any kind of data type, the hashcode() method generates a key, 2 = aa12:, if we try to hash 2 again, we would land on the same saved key, cause obvious, 
+Now, when you are dealing with objects, based on equals() method the Class if that object overrides, hashcode() will return either same or different value
+ABC a = new ABC(1, "Ananya");
+ABC ab = new ABC(1, "Ananya");, by default logic these two objects are same, but if,
+class ABC {
+  @Override
+  boolean equals() {
+      // write custom logic here, may be check on the basis of ID,
+  }
+}
+hashcode() returns same value.
+
+There might be a case when hashcode() generates the same hashed value , even if they are unequal. This is case of Hash Collision, and if they point to the same bucket,
+the value is not replaced but that bucket ( index ), is a linked list, so yes, the value is added to the linked list for the same hashed value.
+And in the worst case if there are several cases of hash collision, the searcing will be linear on linked list.
+
+So at the time of accessing, we again use hash check if present then check if linkedlist then perform the search for the value
+
+BONUS - SLF4J, is a logging thing used in SpringBoot / Java applications
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Now this is something new 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+1 . You must be aware of using switch expressions like this
+switch() {
+  case 's' : return 1; // valid
+  break;
+}
+
+Guess what ? switch is now a function , from JDK 13, this is switch expression, previously it was switch statement
+
+var result = switch(month) {
+  case JANUARY, JUNE, JULY -> 3;
+  case FEBRUARY, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER -> 1;
+  case MARCH, MAY, APRIL, AUGUST -> 2;
+  default -> 0; 
+}
+
+BONUS - `->`, when you see this, it is mostly used when there is some kind of value being returned from that block
+
+expanding...........
+case MARCH, MAY, APRIL, AUGUST -> {
+    int month = 7;
+    yield month * 4; // you cannot use return here, return can only be used with switch statement, thus yield is used
+};
+
+When using switch expressions, all the cases must be valid, if all the cases are not there, default case must be present
+
+🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 Finale of STEP_1 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
+
+List names = List.of("A", "B", "C", "D", "E");
+
+for (String name : names) {
+    LOG.info(name);
+}
+
+names.forEach(name -> {
+    LOG.info(name);
+});
+
+BONUS -  cannot break a continue loop
+
+List names = List.of("Larry", "Steve", "James", "Conan", "Ellen");
+names.forEach(name -> logger.info(name)); // collection
+
+namesMap.forEach((key, value) -> LOG.info(key + " " + value));
+
+ERROR
+String[] foodItems = {"rice", "beans", "egg"};
+foodItems.forEach(food -> logger.info(food));
+FIX
+Arrays.stream(foodItems).forEach(food -> logger.info(food));
+
+
+🙏 THANKS 🙏
+Chat GPT and Baeldung
